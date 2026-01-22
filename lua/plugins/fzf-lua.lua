@@ -11,14 +11,14 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	keys = {
 		{
-			"<leader>ff",
+			"<leader><leader>",
 			function()
 				require("fzf-lua").files()
 			end,
 			desc = "FZF Files",
 		},
 		{
-			"<leader>fg",
+			"<leader>/",
 			function()
 				require("fzf-lua").live_grep()
 			end,
