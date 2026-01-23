@@ -36,9 +36,20 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	group = lsp_fmt_group,
 	callback = function()
 		local efm = vim.lsp.get_clients({ name = "efm" })
+		local prisma = vim.lsp.get_clients({ name = "prismals" })
+
+		if vim.bo.filetype == "prisma" then
+			if vim.tbl_isempty(prisma) then
+				return
+			end
+			vim.lsp.buf.format({ name = "prismals", async = true })
+			return
+		end
+
 		if vim.tbl_isempty(efm) then
 			return
 		end
+
 		vim.lsp.buf.format({ name = "efm", async = true })
 	end,
 })
