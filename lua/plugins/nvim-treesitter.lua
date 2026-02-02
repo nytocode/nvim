@@ -27,6 +27,7 @@ return {
 			"rust",
 			"svelte",
 			"typescript",
+			"tsx",
 			"vue",
 			"yaml",
 			"prisma"

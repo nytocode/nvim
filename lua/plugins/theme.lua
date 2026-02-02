@@ -18,26 +18,38 @@ return {
 		priority = 999,
 	},
 
+	-- {
+	-- 	"p00f/alabaster.nvim",
+	-- 	lazy = false,
+	-- 	priority = 999,
+	-- 	config = function()
+	-- 		-- load duskfox palette
+	-- 		-- local palette = require("nightfox.palette").load("duskfox")
+	--
+	-- 		vim.cmd("colorscheme alabaster")
+	--
+	-- 		vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	-- 		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+	-- 		vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+	-- 		vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+	-- 		vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
+	-- 		vim.api.nvim_set_hl(0, "Folded", { bg = "none" })
+	-- 		vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
+	-- 	end,
+	-- },
 	{
-		"EdenEast/nightfox.nvim",
-		lazy = false,
-		priority = 999,
+		"projekt0n/github-nvim-theme",
+		name = "github-theme",
+		lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
-			-- load duskfox palette
-			local palette = require("nightfox.palette").load("duskfox")
-
-			require("nightfox").setup({
+			require("github-theme").setup({
 				options = {
 					transparent = true,
 				},
-				groups = {
-					duskfox = {
-						Visual = { bg = palette.bg1 },
-					},
-				},
 			})
 
-			vim.cmd("colorscheme duskfox")
+			vim.cmd("colorscheme github_dark_tritanopia")
 		end,
 	},
 }
