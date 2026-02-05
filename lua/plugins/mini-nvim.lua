@@ -7,19 +7,40 @@
 
 return {
 	{ "echasnovski/mini.ai", version = "*", opts = {} },
-	{ "echasnovski/mini.comment", version = "*", opts = {} },
-	{ "echasnovski/mini.move", version = "*", opts = {
-       mappings = {
-          left = '<leader>h',
-          right = '<leader>l',
-          down = '<leader>j',
-          up = '<leader>k',
-          line_left = '<leader>h',
-          line_right = '<leader>l',
-          line_down = '<leader>j',
-          line_up = '<leader>k',
-        },
-  } },
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		lazy = true,
+		opts = {
+			enable_autocmd = false,
+		},
+	},
+	{
+		"echasnovski/mini.comment",
+		version = "*",
+		opts = {
+			options = {
+				custom_commentstring = function()
+					return require("ts_context_commentstring").calculate_commentstring() or vim.bo.commentstring
+				end,
+			},
+		},
+	},
+	{
+		"echasnovski/mini.move",
+		version = "*",
+		opts = {
+			mappings = {
+				left = "<leader>h",
+				right = "<leader>l",
+				down = "<leader>j",
+				up = "<leader>k",
+				line_left = "<leader>h",
+				line_right = "<leader>l",
+				line_down = "<leader>j",
+				line_up = "<leader>k",
+			},
+		},
+	},
 	{ "echasnovski/mini.surround", version = "*", opts = {} },
 	{ "echasnovski/mini.cursorword", version = "*", opts = {} },
 	{ "echasnovski/mini.indentscope", version = "*", opts = {} },

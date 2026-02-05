@@ -8,7 +8,7 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	main = "nvim-treesitter",
-  event = { "BufReadPost", "BufNewFile" },
+	event = { "BufReadPost", "BufNewFile" },
 	opts = {
 		ensure_installed = {
 			"bash",
@@ -30,7 +30,7 @@ return {
 			"tsx",
 			"vue",
 			"yaml",
-			"prisma"
+			"prisma",
 		},
 		auto_install = true,
 		sync_install = true,
@@ -49,15 +49,18 @@ return {
 			},
 		},
 	},
-  config = function()
- vim.cmd.syntax("off")
-    vim.api.nvim_create_autocmd("BufReadPost", {
-        pattern = "*",
-        callback = function()
-            -- can start a specific treesitter on a specific buffer also
-            -- vim.treesitter.start(0, "c")
-            vim.treesitter.start()
-        end,
-    })
-  end
+	config = function()
+		vim.cmd.syntax("off")
+		vim.api.nvim_create_autocmd("BufReadPost", {
+			pattern = "*",
+			callback = function()
+				-- can start a specific treesitter on a specific buffer also
+				-- vim.treesitter.start(0, "c")
+				-- Only start treesitter if a filetype is detected
+				if vim.bo.filetype ~= "" then
+					pcall(vim.treesitter.start)
+				end
+			end,
+		})
+	end,
 }
